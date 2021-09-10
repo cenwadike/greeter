@@ -1,0 +1,2 @@
+# greeter
+NEAR SDK Boilerplate 
