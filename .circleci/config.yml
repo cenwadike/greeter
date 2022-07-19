@@ -12,11 +12,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "hello, world from " $FIRST_ENV_VAR > /home/circleci/project/output.txt 
+      - run: echo "hello, world from " $FIRST_ENV_VAR > ../output.txt 
       - persist_to_workspace:
           root: home/circleci
           paths:
-            - /home/circleci/project/output.txt
+            - ../
       
       - run: 
             command: echo "Build failed"
@@ -28,8 +28,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/project/output.txt
-      - run: cat output.txt 
+          at: ../output.txt
+      - run: cat ../output.txt 
 
   new_job:
     docker:
