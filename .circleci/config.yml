@@ -1,10 +1,10 @@
 version: 2.1
 
-command: 
+commands: 
   print_pipeline_id:
     description: "use reusable code to print an env var"
     steps:
-      - run: echo $CIRCLE_WORKFLOW_ID
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
   save_hello_world_output:
@@ -26,7 +26,13 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/
-      - run: cat output.txt  
+      - run: cat output.txt 
+
+  new_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id
 
 workflows:
   default:
@@ -35,4 +41,5 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - new_job
      
