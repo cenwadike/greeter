@@ -14,12 +14,28 @@ jobs:
           name: "save hello world output"
           command: |
             echo "hello, world from " $FIRST_ENV_VAR > output.txt   
-      - save_cache:
-          key: v1-my-project-{{ checksum "output.txt" }}
+      - persist_to_workspace:
+          root: /tmp/workspace
           paths:
-            - ~/temp 
+            - output.txt
+
+  print_output_file:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: "say hello world output"
+          command: |
+            cat output.txt  
+
 workflows:
   say-hello-workflow:
     jobs:
       - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
      
