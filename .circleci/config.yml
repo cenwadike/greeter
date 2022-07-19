@@ -17,7 +17,7 @@ jobs:
       #     root: home/circleci
       #     paths:
       #       - ~/home/circleci/output.txt
-      - run: ls -al
+      - run: ls -al && pwd
       - run: 
             command: echo "Build failed"
             when: on_fail
