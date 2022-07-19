@@ -13,7 +13,7 @@ jobs:
       - run: echo "hello, world from " $FIRST_ENV_VAR > output.txt 
               
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /~
           paths:
             - output.txt
 
@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
+          at: /~
       - run: cat output.txt  
 
 workflows:
