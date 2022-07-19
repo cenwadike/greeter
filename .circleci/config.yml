@@ -17,6 +17,9 @@ jobs:
           root: /home/circlec/temp
           paths:
             - output.txt
+      - run: 
+            command: echo "Build failed"
+            when: on_fail
 
   print_output_file:
     docker:
