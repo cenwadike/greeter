@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run: echo "hello, world from " $FIRST_ENV_VAR > output.txt 
       - persist_to_workspace:
-          root: /home/circlec/temp
+          root: .
           paths:
             - output.txt
       - run: 
@@ -26,7 +26,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_workspace:
-          at: /home/circlec/temp/
+          at: ./
       - run: cat output.txt 
 
   new_job:
