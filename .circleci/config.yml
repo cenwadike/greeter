@@ -12,11 +12,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "hello, world from " $FIRST_ENV_VAR > output.txt 
+      - run: echo "hello, world from " $FIRST_ENV_VAR > ~/output.txt 
       - persist_to_workspace:
           root: ~/
           paths:
-            - ~/output.txt
+            - output.txt
       
       - run: 
             command: echo "Build failed"
@@ -28,8 +28,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/output.txt
-      - run: cat output.txt 
+          at: ~/
+      - run: cat ~/output.txt 
 
   new_job:
     docker:
