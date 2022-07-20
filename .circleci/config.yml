@@ -16,7 +16,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - ./
+            - output.txt
       
       - run: 
             command: echo "Build failed"
@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./output.txt
+          at: ~/output.txt
       - run: cat output.txt 
 
   new_job:
