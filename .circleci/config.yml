@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run: echo "hello, world from " $FIRST_ENV_VAR > output.txt 
       - persist_to_workspace:
-          root: home/circleci
+          root: ~/
           paths:
             - ./
       
